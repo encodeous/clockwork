@@ -1,7 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Authors>Encodeous</Authors>
+        <Description>Clockwork Task Scheduling Library</Description>
+        <Copyright>Copyright 2020 Adam Chen</Copyright>
+        <PackageId>Encodeous.clockwork</PackageId>
+        <PackageProjectUrl>https://github.com/encodeous/clockwork</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/encodeous/clockwork/blob/main/LICENSE</PackageLicenseUrl>
+        <PackageIconUrl>git</PackageIconUrl>
+        <RepositoryUrl>https://github.com/encodeous/clockwork</RepositoryUrl>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="C5" Version="2.5.3" />
+    </ItemGroup>
 
 </Project>

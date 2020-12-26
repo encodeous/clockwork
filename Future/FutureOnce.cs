@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace clockwork.Attributes
+namespace clockwork.Future
 {
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]  
     public class FutureOnce : Attribute

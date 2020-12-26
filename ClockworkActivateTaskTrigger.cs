@@ -1,13 +1,14 @@
 ﻿namespace clockwork
 {
-    public class ClockworkTaskTrigger
+    public class ClockworkActivateTaskTrigger
     {
         internal delegate void Triggered();
 
-        internal Triggered TriggerCalledDelegate;
-        public void TriggerFunction()
+        internal event Triggered TriggerCalledEvent;
+        
+        public void Activate()
         {
-            TriggerCalledDelegate?.Invoke();
+            TriggerCalledEvent?.Invoke();
         }
     }
 }
