@@ -3,11 +3,11 @@
 /workspace.xml
 # Rider ignored files
 /contentModel.xml
-/.idea.clockwork.iml
-/modules.xml
 /projectSettingsUpdater.xml
+/modules.xml
+/.idea.clockwork.iml
 # Datasource local storage ignored files
-/../../../../../../../:\encodeous\clockwork\clockwork\.idea\.idea.clockwork\.idea/dataSources/
+/../../../../../../../:\encodeous\clockwork\src\.idea\.idea.clockwork\.idea/dataSources/
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/

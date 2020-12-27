@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using clockwork.Future;
+using clockwork.Attributes;
 
 namespace clockwork
 {
@@ -12,7 +12,7 @@ namespace clockwork
         public static ClockworkScheduler Default = new ClockworkScheduler();
         
         /// <summary>
-        /// Run the default scheduler and scan for Future Attributes
+        /// Run the default scheduler on a separate thread and scan for Future Attributes
         /// </summary>
         public static void Wind()
         {
@@ -26,11 +26,10 @@ namespace clockwork
                     {
                         Action action;
 
-                        var fonce = method.GetCustomAttributes<FutureOnce>().ToList();
-                        var frep = method.GetCustomAttributes<FutureRepeat>().ToList();
-                        var fsch = method.GetCustomAttributes<FutureRepeatScheduled>().ToList();
-                        
-                        if (method.IsStatic && (fonce.Any() || frep.Any() || fsch.Any()))
+                        var fonce = method.GetCustomAttributes<Future>().ToList();
+                        var frep = method.GetCustomAttributes<FutureScheduled>().ToList();
+
+                        if (method.IsStatic && (fonce.Any() || frep.Any()))
                         {
                             if (method.ReturnType != typeof(void))
                             {
@@ -57,23 +56,14 @@ namespace clockwork
 
                         foreach (var fo in fonce)
                         {
-                            var task = new ClockworkTask(action, fo.StartTime);
-                            tasks.Add(task);
+                            fo.Task.Action = action;
+                            tasks.Add(fo.Task);
                         }
                         
                         foreach (var fo in frep)
                         {
-                            var task = new ClockworkTask(action, fo.StartTime, fo.RepeatDelay, fo.Repetitions,
-                                fo.ContinueOnFail);
-                            tasks.Add(task);
-                        }
-                        
-                        
-                        foreach (var fo in fsch)
-                        {
-                            var task = new ClockworkTask(action, fo.CycleDelay, fo.ScheduleType, fo.Timezone,
-                                fo.Repetitions, fo.ContinueOnFail);
-                            tasks.Add(task);
+                            fo.Task.Action = action;
+                            tasks.Add(fo.Task);
                         }
                     }
                 }
