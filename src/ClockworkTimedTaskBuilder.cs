@@ -2,17 +2,20 @@
 
 namespace clockwork
 {
+    /// <summary>
+    /// Builder for Time-Bound Tasks
+    /// </summary>
     public class ClockworkTimedTaskBuilder
     {
         private Action Action;
-        private int Repetitions = 1;
-        private TimeSpan RepeatDelay;
-        private ClockworkTaskTrigger ActivationTrigger = null;
-        private DateTime StartTime;
-        private bool IsAbsolute = false;
-        private TimeSpan StartDelay = TimeSpan.Zero;
-        private bool ShouldContinueOnFail = true;
-        private TimeZoneInfo TimeZone = TimeZoneInfo.Utc;
+        private int _repetitions = 1;
+        private TimeSpan _repeatDelay;
+        private ClockworkTaskTrigger _activationTrigger = null;
+        private DateTime _startTime;
+        private bool _isAbsolute = false;
+        private TimeSpan _startDelay = TimeSpan.Zero;
+        private bool _shouldContinueOnFail = true;
+        private TimeZoneInfo _timeZone = TimeZoneInfo.Utc;
 
         public ClockworkTimedTaskBuilder(Action action)
         {
@@ -26,8 +29,8 @@ namespace clockwork
         /// <returns></returns>
         public ClockworkTimedTaskBuilder Repeat(int repetitions, TimeSpan delay)
         {
-            Repetitions = repetitions;
-            RepeatDelay = delay;
+            _repetitions = repetitions;
+            _repeatDelay = delay;
             return this;
         }
         /// <summary>
@@ -37,7 +40,7 @@ namespace clockwork
         /// <returns></returns>
         public ClockworkTimedTaskBuilder SetTrigger(ClockworkTaskTrigger trigger)
         {
-            ActivationTrigger = trigger;
+            _activationTrigger = trigger;
             return this;
         }
         /// <summary>
@@ -47,8 +50,8 @@ namespace clockwork
         /// <returns></returns>
         public ClockworkTimedTaskBuilder Delayed(TimeSpan delay)
         {
-            IsAbsolute = false;
-            StartDelay = delay;
+            _isAbsolute = false;
+            _startDelay = delay;
             return this;
         }
         /// <summary>
@@ -58,8 +61,8 @@ namespace clockwork
         /// <returns></returns>
         public ClockworkTimedTaskBuilder Delayed(DateTime absoluteDelay)
         {
-            IsAbsolute = true;
-            StartTime = absoluteDelay;
+            _isAbsolute = true;
+            _startTime = absoluteDelay;
             return this;
         }
         /// <summary>
@@ -69,7 +72,7 @@ namespace clockwork
         /// <returns></returns>
         public ClockworkTimedTaskBuilder SetTimezone(TimeZoneInfo zone)
         {
-            TimeZone = zone;
+            _timeZone = zone;
             return this;
         }
         /// <summary>
@@ -79,7 +82,7 @@ namespace clockwork
         /// <returns></returns>
         public ClockworkTimedTaskBuilder ContinueOnFail(bool continueOnFail)
         {
-            ShouldContinueOnFail = continueOnFail;
+            _shouldContinueOnFail = continueOnFail;
             return this;
         }
 
@@ -89,17 +92,17 @@ namespace clockwork
         /// <returns></returns>
         public ClockworkTask Build()
         {
-            if (IsAbsolute)
+            if (_isAbsolute)
             {
                 return new ClockworkTask()
                 {
                     Action = Action,
-                    StartTime = TimeZoneInfo.ConvertTimeToUtc(StartTime, TimeZone),
-                    ActivationTrigger = ActivationTrigger,
-                    ContinueOnFail = ShouldContinueOnFail,
+                    StartTime = TimeZoneInfo.ConvertTimeToUtc(_startTime, _timeZone),
+                    ActivationTrigger = _activationTrigger,
+                    ContinueOnFail = _shouldContinueOnFail,
                     IsAbsolute = true,
-                    RepeatDelay = RepeatDelay,
-                    Repetitions = Repetitions
+                    RepeatDelay = _repeatDelay,
+                    Repetitions = _repetitions
                 };
             }
             else
@@ -107,12 +110,12 @@ namespace clockwork
                 return new ClockworkTask()
                 {
                     Action = Action,
-                    StartDelay = StartDelay,
-                    ActivationTrigger = ActivationTrigger,
-                    ContinueOnFail = ShouldContinueOnFail,
+                    StartDelay = _startDelay,
+                    ActivationTrigger = _activationTrigger,
+                    ContinueOnFail = _shouldContinueOnFail,
                     IsAbsolute = false,
-                    RepeatDelay = RepeatDelay,
-                    Repetitions = Repetitions
+                    RepeatDelay = _repeatDelay,
+                    Repetitions = _repetitions
                 };
             }
         }

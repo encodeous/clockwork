@@ -4,6 +4,9 @@ using clockwork.Attributes;
 
 namespace clockwork
 {
+    /// <summary>
+    /// Builds a Clockwork Task
+    /// </summary>
     public class ClockworkTaskBuilder
     {
         private Action _action;

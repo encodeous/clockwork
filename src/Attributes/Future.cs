@@ -2,6 +2,9 @@
 
 namespace clockwork.Attributes
 {
+    /// <summary>
+    /// Attribute for a Time-Bound Clockwork Task
+    /// </summary>
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]  
     public class Future : Attribute
     {

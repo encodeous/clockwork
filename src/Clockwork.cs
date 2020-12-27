@@ -7,8 +7,14 @@ using clockwork.Attributes;
 
 namespace clockwork
 {
+    /// <summary>
+    /// Clockwork Initialization
+    /// </summary>
     public class Clockwork
     {
+        /// <summary>
+        /// Default Clockwork Scheduler that is Run when Wind is called
+        /// </summary>
         public static ClockworkScheduler Default = new ClockworkScheduler();
         
         /// <summary>

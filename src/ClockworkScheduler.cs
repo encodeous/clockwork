@@ -6,6 +6,9 @@ using C5;
 
 namespace clockwork
 {
+    /// <summary>
+    /// The main Executor for Clockwork tasks
+    /// </summary>
     public class ClockworkScheduler
     {
         private IPriorityQueue<ClockworkTask> _taskQueue;

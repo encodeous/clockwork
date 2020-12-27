@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 using clockwork.Attributes;
 namespace clockwork
 {
+    /// <summary>
+    /// A Clockwork Task
+    /// </summary>
     public class ClockworkTask : IComparable
     {
         /// <summary>
@@ -37,22 +40,64 @@ namespace clockwork
         {
             Clockwork.Default.AddTask(this);
         }
+        /// <summary>
+        /// Action to be performed
+        /// </summary>
         public Action Action;
+        /// <summary>
+        /// Checks if the task start time is Absolute (only applicable to non-scheduled tasks)
+        /// </summary>
         public bool IsAbsolute { get; internal set; }
+        /// <summary>
+        /// The amount of time to delay before starting the task
+        /// </summary>
         internal TimeSpan StartDelay;
+        /// <summary>
+        /// The absolute time to wait until to start the task
+        /// </summary>
         public DateTime StartTime { get; internal set; }
+        /// <summary>
+        /// The amount of time to wait inbetween executions
+        /// </summary>
         public TimeSpan RepeatDelay { get; internal set; }
+        /// <summary>
+        /// Whether to continue executing the task even when an exception occurred
+        /// </summary>
         public bool ContinueOnFail{ get; internal set; }
+        /// <summary>
+        /// The amount of times to execute the Task, -1 for infinite
+        /// </summary>
         public int Repetitions { get; internal set; }
-        
+        /// <summary>
+        /// Checks if the task is Scheduled
+        /// </summary>
         public bool IsScheduled { get; internal set; }
+        /// <summary>
+        /// The Schedule of the task
+        /// </summary>
         public Schedule TaskSchedule { get; internal set; }
+        /// <summary>
+        /// The Timezone that the Schedule runs on
+        /// </summary>
         public TimeZoneInfo ScheduleTimeZone { get; internal set; }
+        /// <summary>
+        /// The amount of time to offset the wait before running a scheduled task
+        /// </summary>
         public TimeSpan CycleStartDelay { get; internal set; }
-
+        /// <summary>
+        /// The number of times the task has already executed
+        /// </summary>
         public int CurrentExecutions { get; private set; }
-
+        /// <summary>
+        /// Delegate for when the task is exited
+        /// </summary>
+        /// <param name="task">The Task</param>
         public delegate void TaskExit(ClockworkTask task);
+        /// <summary>
+        /// Delegate for when the task crashed
+        /// </summary>
+        /// <param name="task">The Task</param>
+        /// <param name="e">The exception</param>
         public delegate void TaskException(ClockworkTask task, Exception e);
 
         /// <summary>
@@ -63,7 +108,9 @@ namespace clockwork
         /// Called when a Clockwork Task failed
         /// </summary>
         public event TaskException OnException;
-
+        /// <summary>
+        /// Checks if the task is active
+        /// </summary>
         public bool IsActivated { get; internal set; }
 
         /// <summary>

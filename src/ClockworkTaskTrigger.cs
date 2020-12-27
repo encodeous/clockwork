@@ -1,5 +1,8 @@
 ﻿namespace clockwork
 {
+    /// <summary>
+    /// Custom Trigger to Activate a task, instead of the default trigger (program execution)
+    /// </summary>
     public class ClockworkTaskTrigger
     {
         internal delegate void Triggered();

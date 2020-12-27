@@ -3,15 +3,18 @@ using clockwork.Attributes;
 
 namespace clockwork
 {
+    /// <summary>
+    /// Builder for Scheduled Tasks
+    /// </summary>
     public class ClockworkScheduledTaskBuilder
     {
         private Action Action;
-        private int Repetitions = 1;
-        private ClockworkTaskTrigger ActivationTrigger = null;
-        private TimeSpan CycleStartDelay = TimeSpan.Zero;
-        private bool ShouldContinueOnFail = true;
+        private int _repetitions = 1;
+        private ClockworkTaskTrigger _activationTrigger = null;
+        private TimeSpan _cycleStartDelay = TimeSpan.Zero;
+        private bool _shouldContinueOnFail = true;
         private Schedule Schedule;
-        private TimeZoneInfo TimeZone = TimeZoneInfo.Utc;
+        private TimeZoneInfo _timeZone = TimeZoneInfo.Utc;
 
         public ClockworkScheduledTaskBuilder(Action action, Schedule schedule)
         {
@@ -25,7 +28,7 @@ namespace clockwork
         /// <returns></returns>
         public ClockworkScheduledTaskBuilder Repeat(int repetitions)
         {
-            Repetitions = repetitions;
+            _repetitions = repetitions;
             return this;
         }
         /// <summary>
@@ -35,7 +38,7 @@ namespace clockwork
         /// <returns></returns>
         public ClockworkScheduledTaskBuilder SetTrigger(ClockworkTaskTrigger trigger)
         {
-            ActivationTrigger = trigger;
+            _activationTrigger = trigger;
             return this;
         }
         /// <summary>
@@ -45,7 +48,7 @@ namespace clockwork
         /// <returns></returns>
         public ClockworkScheduledTaskBuilder SetTimezone(TimeZoneInfo zone)
         {
-            TimeZone = zone;
+            _timeZone = zone;
             return this;
         }
         /// <summary>
@@ -55,7 +58,7 @@ namespace clockwork
         /// <returns></returns>
         public ClockworkScheduledTaskBuilder Delay(TimeSpan delay)
         {
-            CycleStartDelay = delay;
+            _cycleStartDelay = delay;
             return this;
         }
         /// <summary>
@@ -65,7 +68,7 @@ namespace clockwork
         /// <returns></returns>
         public ClockworkScheduledTaskBuilder ContinueOnFail(bool continueOnFail)
         {
-            ShouldContinueOnFail = continueOnFail;
+            _shouldContinueOnFail = continueOnFail;
             return this;
         }
         /// <summary>
@@ -74,18 +77,18 @@ namespace clockwork
         /// <returns></returns>
         public ClockworkTask Build()
         {
-            if (ActivationTrigger != null)
+            if (_activationTrigger != null)
             {
                 return new ClockworkTask()
                 {
                     Action = Action,
                     IsScheduled = true,
-                    ActivationTrigger = ActivationTrigger,
-                    ContinueOnFail = ShouldContinueOnFail,
-                    Repetitions = Repetitions,
-                    CycleStartDelay = CycleStartDelay,
+                    ActivationTrigger = _activationTrigger,
+                    ContinueOnFail = _shouldContinueOnFail,
+                    Repetitions = _repetitions,
+                    CycleStartDelay = _cycleStartDelay,
                     TaskSchedule = Schedule,
-                    ScheduleTimeZone = TimeZone
+                    ScheduleTimeZone = _timeZone
                 };
             }
             else
@@ -94,13 +97,13 @@ namespace clockwork
                 {
                     Action = Action,
                     IsScheduled = true,
-                    StartTime = Utils.GetNextTimeScheduleUtc(Schedule, TimeZone, DateTime.UtcNow),
-                    ActivationTrigger = ActivationTrigger,
-                    ContinueOnFail = ShouldContinueOnFail,
-                    Repetitions = Repetitions,
-                    CycleStartDelay = CycleStartDelay,
+                    StartTime = Utils.GetNextTimeScheduleUtc(Schedule, _timeZone, DateTime.UtcNow),
+                    ActivationTrigger = _activationTrigger,
+                    ContinueOnFail = _shouldContinueOnFail,
+                    Repetitions = _repetitions,
+                    CycleStartDelay = _cycleStartDelay,
                     TaskSchedule = Schedule,
-                    ScheduleTimeZone = TimeZone
+                    ScheduleTimeZone = _timeZone
                 };
             }
         }
