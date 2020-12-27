@@ -1,0 +1,284 @@
+{
+  "homepages": [],
+  "source_base_path": "/github/workspace",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html",
+          "hash": "5CtvYDGeTktE7Agx92906g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/clockwork.Attributes.Future.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/clockwork.Attributes.Future.html",
+          "hash": "dSaw4fDfb8qoNezuMHN4Gw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/clockwork.Attributes.FutureScheduled.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/clockwork.Attributes.FutureScheduled.html",
+          "hash": "17r/IiU7Yu+4KHias5lBpA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/clockwork.Attributes.Schedule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/clockwork.Attributes.Schedule.html",
+          "hash": "8h1Fl+kPMTuRwx88tSEdhw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/clockwork.Attributes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/clockwork.Attributes.html",
+          "hash": "TNHShkGyYbmRqg6IIUO+2w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/clockwork.Clockwork.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/clockwork.Clockwork.html",
+          "hash": "G11i+/2V+HTBt5Z6/nG+rw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/clockwork.ClockworkScheduledTaskBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/clockwork.ClockworkScheduledTaskBuilder.html",
+          "hash": "H/Y/iH2ZxtsCqSO4Qre48w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/clockwork.ClockworkScheduler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/clockwork.ClockworkScheduler.html",
+          "hash": "WNVWD66rntzhhrfRg5B6kw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/clockwork.ClockworkTask.TaskException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/clockwork.ClockworkTask.TaskException.html",
+          "hash": "OmBF5qeoP882uNwssPDP1g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/clockwork.ClockworkTask.TaskExit.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/clockwork.ClockworkTask.TaskExit.html",
+          "hash": "qdkpjg9XsW2YwojZBnikpQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/clockwork.ClockworkTask.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/clockwork.ClockworkTask.html",
+          "hash": "KFWaOb84YgRicoiSFjPWNQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/clockwork.ClockworkTaskBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/clockwork.ClockworkTaskBuilder.html",
+          "hash": "ph5yUW3vByMd7GcfFaEEfA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/clockwork.ClockworkTaskTrigger.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/clockwork.ClockworkTaskTrigger.html",
+          "hash": "Whg/E+wehpjCfz4b/hWi/g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/clockwork.ClockworkTimedTaskBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/clockwork.ClockworkTimedTaskBuilder.html",
+          "hash": "ckknyrbU/ZlgRZP7Vw1v8Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/clockwork.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/clockwork.html",
+          "hash": "OrIGVTtamkiI7YMUqorP+w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "g2f5YYgIUaTTOtr1POsKUA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "tCgEdfR4C7zMYyMGqwL5dA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "Ertqm0jnRTLfc88LTA56aQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "1Xdjw8Ib7j95/TiJDj+CFw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "NoAvailableBuildCache"
+      },
+      "processors": {
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 3,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 14,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

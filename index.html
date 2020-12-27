@@ -1,0 +1,188 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Clockwork - Rapid Task Scheduling </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Clockwork - Rapid Task Scheduling ">
+    <meta name="generator" content="docfx 2.45.1.0">
+    
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/docfx.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <meta property="docfx:navrel" content="toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="index.html">
+                <img id="logo" class="svg" src="logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="clockwork---rapid-task-scheduling">Clockwork - Rapid Task Scheduling</h1>
+
+<p><a href="https://github.com/encodeous/clockwork"><img src="https://img.shields.io/github/workflow/status/encodeous/clockwork/publish%20to%20nuget" alt="GitHub Workflow Status"></a> <a href="https://www.nuget.org/packages/Encodeous.clockwork/"><img src="https://img.shields.io/nuget/v/Encodeous.clockwork" alt="Nuget"> </a><a href="https://encodeous.github.io/clockwork/index.html"><img src="https://img.shields.io/badge/View-Documentation-green" alt=""></a></p>
+<p>Clockwork is an easy to use Task Scheduler that reduces a lot of boilerplate code.</p>
+<h2 id="usage">Usage</h2>
+<p>Clockwork can either be used with in-code attributes or with the Scheduler Api.</p>
+<h3 id="clockwork-with-attributes">Clockwork with Attributes</h3>
+<p>Clockwork with Attributes requires the task function to be static.</p>
+<p>There are two types of Clockwork attributes.</p>
+<ul>
+<li><p><code>Future</code> executes tasks bound by time or on repeat</p>
+</li>
+<li><p><code>FutureScheduled</code> will schedule executions to the beginning of <code>Years, Months, Weeks, Days, Hours, Minutes, or Seconds</code> with an optional offset.</p>
+</li>
+</ul>
+<p>Here is an example using Clockwork.</p>
+<pre><code class="lang-c#">static void Main()
+{
+    // Start the Clockwork Scheduler
+    Clockwork.Wind();
+    Thread.Sleep(-1);
+}
+[Future(5000)]
+public static void StartIn5Seconds()
+{
+    // This function will be run by the scheduler 5 seconds after the program starts
+    Console.WriteLine(&quot;Started 5 Seconds Later&quot;);
+}
+[Future(2000, 5000)]
+public static void RunEvery5Seconds()
+{
+    // This function will be run by the scheduler 2 seconds after the program starts, and will repeat every 5 seconds
+    Console.WriteLine(&quot;Running every 5 Seconds&quot;);
+}
+[Future(2000, 5000)]
+public static async Task RunOnStartOfMinute()
+{
+    // Clockwork also supports asynchronous functions, and will run all tasks in parallel
+    // This will not block other tasks, nor will it block the future executions of the current task
+    await Task.Delay(10000);
+}
+[FutureScheduled(Schedule.ByMonth, -1, &quot;Eastern Standard Time&quot;)]
+public static void RunOnStartOfMonth()
+{
+    // This function will be run by the scheduler on the start of every month in Eastern Standard Time
+    Console.WriteLine(&quot;Running on the start of every month&quot;);
+}
+</code></pre>
+<h3 id="clockwork-with-the-advanced-scheduling-api">Clockwork with the Advanced Scheduling Api</h3>
+<p>With the Clockwork Scheduling Api, it is possible to create tasks that have custom triggers.</p>
+<p>Create an instance of <code>ClockworkTaskTrigger</code> and call the <code>Activate()</code> function to trigger the task. Please note that tasks will not trigger unless it is added to a task scheduler.</p>
+<p>To create tasks with the Api, use the builder pattern shown below:</p>
+<pre><code class="lang-c#">// Start the Clockwork Scheduler
+Clockwork.Wind();
+// Create a repeating task that runs every 5 seconds, with a delayed start of 2 seconds
+var task = ClockworkTask.Create(() =&gt;
+    {
+        Console.WriteLine(&quot;Repeat every 5 seconds&quot;);
+    })
+    .BuildTimedTask()
+    .Repeat(-1, TimeSpan.FromSeconds(5))
+    .Delayed(TimeSpan.FromSeconds(2))
+    .Build();
+
+// Custom Task Trigger
+var trigger = new ClockworkTaskTrigger();
+// Delay the activation of the event until the task is triggered
+var customTrigger = ClockworkTask.Create(() =&gt;
+    {
+        // This task will run on the middle of every second once the task is triggered and repeat indefinitely
+        Console.WriteLine($&quot;Triggered Task at {DateTime.Now.ToString(&quot;MMMM dd, yyyy hh:mm:ss.ffff tt&quot;)}&quot;);
+    })
+    .BuildScheduledTask(Schedule.BySecond)
+    .Repeat(-1)
+    .Delay(TimeSpan.FromMilliseconds(500))
+    .SetTrigger(trigger)
+    .Build();
+// Add the tasks to the scheduler
+Clockwork.Default.AddAll(new []{task, customTrigger});
+
+Console.WriteLine(&quot;Waiting for a newline to trigger&quot;);
+Console.ReadLine();
+// Trigger the execution of the task
+trigger.Activate();
+
+Thread.Sleep(-1);
+</code></pre>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/encodeous/clockwork/blob/c77aa01fbb49832dbcf5af009f104dcd192fdcd1/index.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+  </body>
+</html>
