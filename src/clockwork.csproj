@@ -14,7 +14,7 @@
         <PackageIconUrl>git</PackageIconUrl>
         <RepositoryUrl>https://github.com/encodeous/clockwork</RepositoryUrl>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-        <Version>1.2.0</Version>
+        <Version>1.2.2</Version>
     </PropertyGroup>
 
     <ItemGroup>
