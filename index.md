@@ -1,6 +1,6 @@
 # Clockwork - Rapid Task Scheduling
 
-[![Nuget](https://img.shields.io/nuget/v/Encodeous.clockwork) ](https://www.nuget.org/packages/Encodeous.clockwork/)[![](https://img.shields.io/badge/View-Documentation-green)](https://encodeous.github.io/clockwork/index.html)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/encodeous/clockwork/publish%20to%20nuget)](https://github.com/encodeous/clockwork) [![Nuget](https://img.shields.io/nuget/v/Encodeous.clockwork) ](https://www.nuget.org/packages/Encodeous.clockwork/)[![](https://img.shields.io/badge/View-Documentation-green)](https://encodeous.github.io/clockwork/index.html)
 
 Clockwork is an easy to use Task Scheduler that reduces a lot of boilerplate code.
 
