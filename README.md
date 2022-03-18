@@ -39,7 +39,7 @@ public static void RunEvery5Seconds()
     // This function will be run by the scheduler 2 seconds after the program starts, and will repeat every 5 seconds
     Console.WriteLine("Running every 5 Seconds");
 }
-[Future(2000, 5000)]
+[FutureScheduled(Schedule.ByMinute, -1)]
 public static async Task RunOnStartOfMinute()
 {
     // Clockwork also supports asynchronous functions, and will run all tasks in parallel
